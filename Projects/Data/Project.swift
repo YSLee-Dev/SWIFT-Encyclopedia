@@ -12,7 +12,9 @@ let project = Project.makeModule(
     name: "Data",
     product: .staticFramework,
     dependencies: [
-        .project(target: "Domain", path: .relativeToRoot("Projects/Domain"))
+        .project(target: "Domain", path: .relativeToRoot("Projects/Domain")),
+        .external(name: "RxSwift"),
+        .external(name: "RxCocoa")
     ],
     resources: ["Resources/**"]
 )

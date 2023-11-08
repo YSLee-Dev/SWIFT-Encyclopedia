@@ -13,7 +13,8 @@ let project = Project.makeModule(
     platform: .iOS,
     product: .app,
     dependencies: [
-        .project(target: "Data", path: .relativeToRoot("Projects/Data"))
+        .project(target: "Data", path: .relativeToRoot("Projects/Data")),
+        .external(name: "Swinject")
     ],
     resources: ["Resources/**"],
     infoPlist: .file(path: "Support/Info.plist")

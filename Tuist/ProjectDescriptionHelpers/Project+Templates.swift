@@ -19,7 +19,7 @@ public extension Project {
                 .debug(name: .debug),
                 .release(name: .release)
             ], defaultSettings: .recommended)
-
+        
         let appTarget = Target(
             name: name,
             platform: platform,
@@ -29,9 +29,10 @@ public extension Project {
             infoPlist: infoPlist,
             sources: sources,
             resources: resources,
+            scripts: [.swiftLint],
             dependencies: dependencies
         )
-
+        
         let testTarget = Target(
             name: "\(name)Tests",
             platform: platform,
@@ -40,13 +41,14 @@ public extension Project {
             deploymentTarget: deploymentTarget,
             infoPlist: .default,
             sources: ["Tests/**"],
+            scripts: [.swiftLint],
             dependencies: [.target(name: name)]
         )
-
+        
         let schemes: [Scheme] = [.makeScheme(target: .debug, name: name)]
-
+        
         let targets: [Target] = [appTarget, testTarget]
-
+        
         return Project(
             name: name,
             organizationName: organizationName,

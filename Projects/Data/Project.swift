@@ -14,7 +14,10 @@ let project = Project.makeModule(
     dependencies: [
         .project(target: "Domain", path: .relativeToRoot("Projects/Domain")),
         .external(name: "RxSwift"),
-        .external(name: "RxCocoa")
+        .external(name: "RxCocoa"),
+        .external(name: "Nimble"),
+        .external(name: "RxTest"),
+        .external(name: "RxBlocking")
     ],
     resources: ["Resources/**"]
 )

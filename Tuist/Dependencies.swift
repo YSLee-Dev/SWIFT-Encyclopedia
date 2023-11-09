@@ -30,6 +30,18 @@ let dependencies = Dependencies(
             url: "https://github.com/Swinject/Swinject.git",
             requirement: .upToNextMajor(from: "2.8.0")
         ),
+        .remote(
+            url: "https://github.com/Quick/Nimble.git",
+            requirement: .upToNextMajor(from: "12.0.0")
+        ),
+        .remote(
+            url: "https://github.com/ReactiveX/RxBlocking.git",
+            requirement: .upToNextMajor(from: "6.5.0")
+        ),
+        .remote(
+            url: "https://github.com/ReactiveX/RxTest.git",
+            requirement: .upToNextMajor(from: "6.5.0")
+        )
     ]),
     platforms: [
         .iOS

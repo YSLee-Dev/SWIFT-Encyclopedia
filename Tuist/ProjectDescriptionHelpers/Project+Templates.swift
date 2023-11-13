@@ -11,7 +11,8 @@ public extension Project {
         dependencies: [TargetDependency] = [],
         sources: SourceFilesList = ["Sources/**"],
         resources: ResourceFileElements? = nil,
-        infoPlist: InfoPlist = .default
+        infoPlist: InfoPlist = .default,
+        testDependencies: [ TargetDependency ] = []
     ) -> Project {
         let settings: Settings = .settings(
             base: [:],
@@ -42,7 +43,7 @@ public extension Project {
             infoPlist: .default,
             sources: ["Tests/**"],
             scripts: [.swiftLint],
-            dependencies: [.target(name: name)]
+            dependencies: [.target(name: name)] + testDependencies
         )
         
         let schemes: [Scheme] = [.makeScheme(target: .debug, name: name)]

@@ -79,6 +79,15 @@ extension MainVC {
                 mainVC.searchOff()
             }
             .disposed(by: self.bag)
+        
+        let input = MainViewModel
+            .Input(
+                tfText: self.mainTF.textField.rx.text
+                    .filter{$0 != nil}
+                    .map {$0!}
+            )
+        
+        let output = self.viewModel.transform(input: input)
     }
     
     private func searchOn() {

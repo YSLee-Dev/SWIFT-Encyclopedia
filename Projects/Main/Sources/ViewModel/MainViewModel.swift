@@ -18,17 +18,22 @@ public class MainViewModel {
     
     struct Input {
         let tfText: Observable<String>
+        let doneBtnTap: Observable<Void>
     }
     
     struct Output {
-        
     }
     
     func transform(input: Input) -> Output {
-        input.tfText
-            .subscribe(onNext: {
+        input.doneBtnTap
+            .withLatestFrom(input.tfText)
+            .withUnretained(self)
+            .flatMap { viewModel, text in
+                viewModel.loadUsecase.encyclopediaDataLoad(query: text)
+            }
+            .subscribe {
                 print($0)
-            })
+            }
             .disposed(by: self.bag)
         return Output()
     }

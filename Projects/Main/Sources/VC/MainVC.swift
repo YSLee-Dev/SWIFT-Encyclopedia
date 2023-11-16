@@ -11,6 +11,7 @@ import Then
 import SnapKit
 import RxSwift
 import RxCocoa
+import RxOptional
 
 public class MainVC: UIViewController {
     let viewModel: MainViewModel
@@ -83,8 +84,9 @@ extension MainVC {
         let input = MainViewModel
             .Input(
                 tfText: self.mainTF.textField.rx.text
-                    .filter{$0 != nil}
-                    .map {$0!}
+                    .filterNil(),
+                doneBtnTap: self.mainTF.textField.rx.controlEvent(.editingDidEndOnExit)
+                    .asObservable()
             )
         
         let output = self.viewModel.transform(input: input)

@@ -13,7 +13,8 @@ let project = Project.makeModule(
     product: .staticFramework,
     dependencies: [
         .external(name: "RxSwift"),
-        .external(name: "RxOptional")
+        .external(name: "RxOptional"),
+        .external(name: "RxDataSources")
     ],
     resources: ["Resources/**"]
 )

@@ -22,6 +22,7 @@ public class MainViewModel {
     }
     
     struct Output {
+        let resultData: Driver<
     }
     
     func transform(input: Input) -> Output {

@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Common
+
 import Then
 import SnapKit
 import RxSwift
@@ -17,8 +19,11 @@ public class MainVC: UIViewController {
     let viewModel: MainViewModel
     
     let mainTF = MainTextField()
+    let mainTableView = MainResultTableView().then {
+        $0.isHidden = true
+    }
     let mainTitle = UILabel().then {
-        $0.font = .boldSystemFont(ofSize: 24)
+        $0.font = .boldSystemFont(ofSize: FontStyle.titleBig.ofSize)
         $0.textColor = .label
         $0.text = "백과사전에 오신걸 환영합니다."
     }
@@ -51,7 +56,7 @@ extension MainVC {
     }
     
     private func layout() {
-        [self.mainTF, self.mainTitle].forEach {
+        [self.mainTF, self.mainTitle, self.mainTableView].forEach {
             self.view.addSubview($0)
         }
         self.mainTF.snp.makeConstraints {
@@ -63,6 +68,12 @@ extension MainVC {
         self.mainTitle.snp.makeConstraints {
             $0.bottom.equalTo(self.mainTF.snp.top).offset(-4)
             $0.leading.trailing.equalTo(self.mainTF).inset(4)
+        }
+        
+        self.mainTableView.snp.makeConstraints {
+            $0.leading.trailing.equalTo(self.mainTF)
+            $0.top.equalTo(self.mainTF.snp.bottom).offset(12)
+            $0.bottom.equalToSuperview().inset(20)
         }
     }
     
@@ -90,6 +101,7 @@ extension MainVC {
             )
         
         let output = self.viewModel.transform(input: input)
+        
     }
     
     private func searchOn() {
@@ -105,6 +117,7 @@ extension MainVC {
         UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseInOut]) {
             self.mainTF.searchOn()
             self.view.layoutIfNeeded()
+            self.mainTableView.isHidden = false
         }
     }
     
@@ -120,6 +133,7 @@ extension MainVC {
             self.mainTitle.alpha = 1
             self.view.layoutIfNeeded()
             self.mainTF.searchOff()
+            self.mainTableView.isHidden = true
         }
     }
 }

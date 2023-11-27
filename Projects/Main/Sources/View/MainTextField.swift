@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Common
+
 import Then
 import SnapKit
 
@@ -21,7 +23,7 @@ class MainTextField: UIView {
     }
     
     let cancelBtn = UIButton().then {
-        $0.titleLabel?.font = .boldSystemFont(ofSize: 16)
+        $0.titleLabel?.font = .boldSystemFont(ofSize: FontStyle.mid.ofSize)
         $0.setTitleColor(.label, for: .normal)
         $0.setTitle("취소", for: .normal)
     }

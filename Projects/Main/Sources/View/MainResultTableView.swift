@@ -22,6 +22,8 @@ class MainResultTableView: UITableView {
 extension MainResultTableView {
     private func attribute() {
         self.register(MainResultTableViewCell.self, forCellReuseIdentifier: MainResultTableViewCell.id)
-        self.backgroundColor = .red
+        self.backgroundColor = .systemBackground
+        self.rowHeight = 52
+        self.separatorInset.left = 0
     }
 }

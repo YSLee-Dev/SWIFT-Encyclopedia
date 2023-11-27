@@ -17,6 +17,7 @@ class MainResultTableViewCell: UITableViewCell {
     static let id = "MainResultTableViewCell"
     
     let mainTitle = UILabel().then {
+        $0.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         $0.textColor = .label
         $0.font = .systemFont(ofSize: FontStyle.mid.ofSize)
     }
@@ -24,6 +25,13 @@ class MainResultTableViewCell: UITableViewCell {
     let subTitle = UILabel().then {
         $0.textColor = .label
         $0.font = .systemFont(ofSize: FontStyle.small.ofSize)
+    }
+    
+    var stackView = UIStackView().then {
+        $0.distribution = .fill
+        $0.alignment = .fill
+        $0.spacing = 12
+        $0.axis = .horizontal
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -38,18 +46,13 @@ class MainResultTableViewCell: UITableViewCell {
 
 extension MainResultTableViewCell {
     private func layout() {
+        self.addSubview(self.stackView)
+        self.stackView.snp.makeConstraints {
+            $0.edges.equalToSuperview().inset(8)
+        }
+        
         [self.mainTitle, self.subTitle].forEach {
-            self.addSubview($0)
-        }
-        
-        self.mainTitle.snp.makeConstraints {
-            $0.leading.top.bottom.equalToSuperview().inset(8)
-        }
-        
-        self.subTitle.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(8)
-            $0.top.bottom.equalTo(self.mainTitle)
-            $0.leading.equalTo(self.mainTitle.snp.trailing).offset(8)
+            self.stackView.addArrangedSubview($0)
         }
     }
     

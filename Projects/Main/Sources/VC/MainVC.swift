@@ -8,6 +8,7 @@
 import UIKit
 
 import Common
+import Domain
 
 import Then
 import SnapKit
@@ -102,8 +103,21 @@ extension MainVC {
             )
         
         
+        let dataSources = RxTableViewSectionedAnimatedDataSource<EncyclopediaSection>(
+            animationConfiguration: .init(
+                insertAnimation: .left, deleteAnimation: .right
+            ), configureCell: { _, tableView, index, data in
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: MainResultTableViewCell.id) as? MainResultTableViewCell else {
+                    return UITableViewCell()
+                }
+                cell.labelDataSet(title: data.title, subTitle: data.description)
+                return cell
+            })
         
         let output = self.viewModel.transform(input: input)
+        output.resultData
+            .drive(self.mainTableView.rx.items(dataSource: dataSources))
+            .disposed(by: self.bag)
         
     }
     

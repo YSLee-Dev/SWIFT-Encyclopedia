@@ -11,9 +11,9 @@ import RxDataSources
 
 public struct EncyclopediaData: IdentifiableType, Equatable {
     let id: String
-    let title: String
-    let description: String
-    let url: URL?
+    public let title: String
+    public let description: String
+    public let url: URL?
     
     public init(
         id: String,

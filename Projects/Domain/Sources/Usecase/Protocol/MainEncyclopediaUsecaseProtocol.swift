@@ -11,5 +11,5 @@ import Foundation
 import RxSwift
 
 public protocol MainEncyclopediaUsecaseProtocol {
-    func encyclopediaDataLoad(query: String) -> Observable<[EncyclopediaSection]>
+    func encyclopediaDataLoad(query: String, nowPage: Int) -> Observable<[EncyclopediaSection]>
 }

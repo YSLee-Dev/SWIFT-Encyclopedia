@@ -10,5 +10,5 @@ import Foundation
 import RxSwift
 
 public protocol MainEncyclopediaRepositoryProtocol {
-    func encyclopediaDataLoad(query: String) -> Single<[EncyclopediaData]>
+    func encyclopediaDataLoad(query: String, page: Int) -> Single<[EncyclopediaData]>
 }

@@ -22,15 +22,15 @@ public class MainEncyclopediaRepository: MainEncyclopediaRepositoryProtocol {
         self.networkService = networkService
     }
     
-    public func encyclopediaDataLoad(query: String) -> Single<[EncyclopediaData]> {
+    public func encyclopediaDataLoad(query: String, page: Int) -> Single<[EncyclopediaData]> {
         var urlComponents = URLComponents()
         urlComponents.scheme = NetworkConfiguration.URL.scheme.rawValue
         urlComponents.host = NetworkConfiguration.URL.host.rawValue
         urlComponents.path = NetworkConfiguration.URL.path.rawValue
         urlComponents.queryItems = [
-            URLQueryItem(name: NetworkConfiguration.Query.start.rawValue, value: "1"),
+            URLQueryItem(name: NetworkConfiguration.Query.start.rawValue, value: "\(page)"),
             URLQueryItem(name: NetworkConfiguration.Query.query.rawValue, value: query),
-            URLQueryItem(name: NetworkConfiguration.Query.display.rawValue, value: "10")
+            URLQueryItem(name: NetworkConfiguration.Query.display.rawValue, value: "30")
         ]
         
         return self.networkService.request(

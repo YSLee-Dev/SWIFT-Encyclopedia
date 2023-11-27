@@ -99,9 +99,11 @@ extension MainVC {
                 tfText: self.mainTF.textField.rx.text
                     .filterNil(),
                 doneBtnTap: self.mainTF.textField.rx.controlEvent(.editingDidEndOnExit)
+                    .asObservable(),
+                scrollCellIndex: self.mainTableView.rx.willDisplayCell
+                    .map {$0.indexPath}
                     .asObservable()
             )
-        
         
         let dataSources = RxTableViewSectionedAnimatedDataSource<EncyclopediaSection>(
             animationConfiguration: .init(

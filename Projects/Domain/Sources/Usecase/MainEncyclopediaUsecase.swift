@@ -18,11 +18,11 @@ public class MainEncyclopediaUsecase: MainEncyclopediaUsecaseProtocol {
         self.repository = repository
     }
     
-    public func encyclopediaDataLoad(query: String) -> Observable<[EncyclopediaSection]> {
-        self.repository.encyclopediaDataLoad(query: query)
+    public func encyclopediaDataLoad(query: String, nowPage: Int) -> Observable<[EncyclopediaSection]> {
+        self.repository.encyclopediaDataLoad(query: query, page: nowPage)
             .map {
                 [
-                    EncyclopediaSection(id: "EncyclopediaSection", items: $0)
+                    EncyclopediaSection(id: "EncyclopediaSection\(nowPage)", items: $0)
                 ]
             }
             .asObservable()

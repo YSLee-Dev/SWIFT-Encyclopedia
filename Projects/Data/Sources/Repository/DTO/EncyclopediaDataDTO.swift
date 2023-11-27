@@ -16,7 +16,7 @@ struct EncyclopediaDataDTO: Decodable {
     func toDomain() -> [EncyclopediaData] {
         self.items.map {
             EncyclopediaData(
-                id: $0.title + $0.description + $0.link,
+                id: $0.title + $0.description + $0.link + "\(self.start)",
                 title: $0.title,
                 description: $0.description,
                 url: URL(string: $0.link)

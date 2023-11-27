@@ -14,6 +14,7 @@ import RxCocoa
 
 public class MainViewModel {
     let loadUsecase: MainEncyclopediaUsecaseProtocol
+    let nowSearchData = BehaviorSubject<[EncyclopediaSection]>(value: [])
     let bag = DisposeBag()
     
     struct Input {
@@ -22,7 +23,7 @@ public class MainViewModel {
     }
     
     struct Output {
-        let resultData: Driver<
+        let resultData: Driver<[EncyclopediaSection]>
     }
     
     func transform(input: Input) -> Output {
@@ -32,11 +33,12 @@ public class MainViewModel {
             .flatMap { viewModel, text in
                 viewModel.loadUsecase.encyclopediaDataLoad(query: text)
             }
-            .subscribe {
-                print($0)
-            }
+            .bind(to: self.nowSearchData)
             .disposed(by: self.bag)
-        return Output()
+        return Output(
+            resultData: nowSearchData
+                .asDriver(onErrorDriveWith: .empty())
+        )
     }
     
     public init(

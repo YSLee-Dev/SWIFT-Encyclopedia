@@ -7,18 +7,29 @@
 
 import Foundation
 
-public struct EncyclopediaData {
+import RxDataSources
+
+public struct EncyclopediaData: IdentifiableType, Equatable {
+    let id: String
     let title: String
     let description: String
     let url: URL?
     
     public init(
+        id: String,
         title: String,
         description: String,
         url: URL?
     ) {
+        self.id = id
         self.title = title
         self.description = description
         self.url = url
+    }
+}
+
+extension EncyclopediaData {
+    public var identity: String {
+        self.id
     }
 }

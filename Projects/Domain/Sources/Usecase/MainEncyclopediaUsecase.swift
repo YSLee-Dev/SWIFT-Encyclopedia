@@ -18,8 +18,13 @@ public class MainEncyclopediaUsecase: MainEncyclopediaUsecaseProtocol {
         self.repository = repository
     }
     
-    public func encyclopediaDataLoad(query: String) -> Observable<[EncyclopediaData]> {
+    public func encyclopediaDataLoad(query: String) -> Observable<[EncyclopediaSection]> {
         self.repository.encyclopediaDataLoad(query: query)
+            .map {
+                [
+                    EncyclopediaSection(id: "EncyclopediaSection", items: $0)
+                ]
+            }
             .asObservable()
     }
 }

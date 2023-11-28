@@ -102,6 +102,8 @@ extension MainVC {
                     .asObservable(),
                 scrollCellIndex: self.mainTableView.rx.willDisplayCell
                     .map {$0.indexPath}
+                    .asObservable(),
+                encyclopediaTap: self.mainTableView.rx.modelSelected(EncyclopediaData.self)
                     .asObservable()
             )
         

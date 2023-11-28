@@ -14,6 +14,7 @@ let project = Project.makeModule(
     dependencies: [
         .project(target: "Domain", path: .relativeToRoot("Projects/Domain")),
         .project(target: "Common", path: .relativeToRoot("Projects/Common")),
+        .project(target: "Detail", path: .relativeToRoot("Projects/Detail")),
         .external(name: "Swinject"),
         .external(name: "SnapKit"),
         .external(name: "RxSwift"),

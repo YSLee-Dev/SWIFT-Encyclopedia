@@ -18,8 +18,8 @@ public struct DetailSwiftUIView: View {
     }
     
     @ObservedObject var viewModel: DetailViewModel
-    
     @State var animiation: Bool = false
+    weak var delegate: DetailAction?
     
     public var body: some View {
         VStack {
@@ -49,9 +49,12 @@ public struct DetailSwiftUIView: View {
             .animation(.easeInOut(duration: 0.35), value: self.animiation)
         }
         .padding()
-        .navigationBarHidden(true)
+        .navigationBarTitleDisplayMode(.automatic)
         .onAppear {
             self.animiation = true
+        }
+        .onDisappear {
+            self.delegate?.onDisappear()
         }
     }
 }

@@ -13,6 +13,8 @@ import RxSwift
 import RxCocoa
 
 public class MainViewModel {
+    weak var delegate: MainVCAction?
+    
     let loadUsecase: MainEncyclopediaUsecaseProtocol
     let nowSearchData = BehaviorRelay<[EncyclopediaSection]>(value: [])
     let bag = DisposeBag()
@@ -24,6 +26,7 @@ public class MainViewModel {
         let tfText: Observable<String>
         let doneBtnTap: Observable<Void>
         let scrollCellIndex: Observable<IndexPath>
+        let encyclopediaTap: Observable<EncyclopediaData>
     }
     
     struct Output {
@@ -62,6 +65,13 @@ public class MainViewModel {
                 return nowData
             }
             .bind(to: self.nowSearchData)
+            .disposed(by: self.bag)
+        
+        input.encyclopediaTap
+            .withUnretained(self)
+            .subscribe (onNext: { viewModel, data in
+                viewModel.delegate?.tapEncyclopediaData(data: data)
+            })
             .disposed(by: self.bag)
         
         return Output(

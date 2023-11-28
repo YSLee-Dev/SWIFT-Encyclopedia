@@ -15,6 +15,7 @@ let project = Project.makeModule(
     dependencies: [
         .project(target: "Data", path: .relativeToRoot("Projects/Data")),
         .project(target: "Main", path: .relativeToRoot("Projects/Main")),
+        .project(target: "Detail", path: .relativeToRoot("Projects/Detail")),
         .external(name: "Swinject")
     ],
     resources: ["Resources/**"],

@@ -31,7 +31,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         [
             MainAssembly(),
             DomainAssembly(),
-            DataAssembly()
+            DataAssembly(),
+            DetailAssembly()
         ].forEach { [weak self] con in
             let assembly = con as? Assembly
             assembly!.assemble(container: self!.container!)

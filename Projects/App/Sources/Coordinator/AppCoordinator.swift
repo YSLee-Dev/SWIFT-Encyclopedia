@@ -44,7 +44,8 @@ class AppCoordinator: CoordinatorProtocol {
         let mainCoordinator = MainCoordinator(dependency: MainCoordinator
             .Dependency(
                 mainVC: mainVC,
-                navigationController: self.navigationController
+                navigationController: self.navigationController,
+                container: self.dependency.container
             )
         )
         mainCoordinator.start()

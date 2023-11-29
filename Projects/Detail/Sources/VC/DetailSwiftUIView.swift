@@ -8,6 +8,9 @@
 
 import SwiftUI
 
+import Kingfisher
+
+import Common
 import Domain
 
 public struct DetailSwiftUIView: View {
@@ -25,21 +28,40 @@ public struct DetailSwiftUIView: View {
         VStack {
             HStack(alignment: .firstTextBaseline) {
                 Text(self.viewModel.tapEncyclopediaData.title)
-                    .font(.system(size: 26, weight: .bold))
+                    .font(.system(size: FontStyle.titleBig.ofSize, weight: .bold))
                 Spacer()
             }
             .padding(.bottom, 8)
             
             ScrollView {
                 VStack(alignment: .leading) {
-                    Text(self.viewModel.tapEncyclopediaData.description)
-                        .padding(.bottom, 20)
+                    HStack(alignment: .center) {
+                        Text(self.viewModel.tapEncyclopediaData.description)
+                            .padding(.bottom, 20)
+                        if self.viewModel.tapEncyclopediaData.thumbnail?.absoluteString != "" && self.viewModel.tapEncyclopediaData.thumbnail != nil {
+                            KFImage(self.viewModel.tapEncyclopediaData.thumbnail)
+                                .placeholder {
+                                    VStack(alignment: .center) {
+                                        Image(systemName: "exclamationmark.triangle")
+                                            .resizable()
+                                            .frame(idealWidth: UIScreen.main.bounds.size.width / 5, idealHeight: UIScreen.main.bounds.size.width / 3)
+                                        Text("썸네일 이미지를 지원하지 않습니다.")
+                                            .lineLimit(2)
+                                            .font(.system(size: FontStyle.mid.ofSize, weight: .bold))
+                                    }
+                                }
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                        }
+                    }
+                    
                     HStack(alignment: .top) {
                         Text("참고 URL:")
                         Button(action: {
                             print("버튼눌림")
                         }, label: {
                             Text(self.viewModel.tapEncyclopediaData.url?.absoluteString ?? "URL 정보 없음")
+                                .lineLimit(1)
                         })
                     }
                 }

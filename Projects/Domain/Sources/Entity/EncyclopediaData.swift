@@ -14,17 +14,20 @@ public struct EncyclopediaData: IdentifiableType, Equatable {
     public let title: String
     public let description: String
     public let url: URL?
+    public let thumbnail: URL?
     
     public init(
         id: String,
         title: String,
         description: String,
-        url: URL?
+        url: URL?,
+        thumbnail: URL?
     ) {
         self.id = id
         self.title = title
         self.description = description
         self.url = url
+        self.thumbnail = thumbnail
     }
 }
 

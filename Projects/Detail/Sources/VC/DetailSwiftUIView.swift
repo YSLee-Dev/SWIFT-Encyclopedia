@@ -34,7 +34,7 @@ public struct DetailSwiftUIView: View {
                 VStack(alignment: .leading) {
                     Text(self.viewModel.tapEncyclopediaData.description)
                         .padding(.bottom, 20)
-                    HStack {
+                    HStack(alignment: .top) {
                         Text("참고 URL:")
                         Button(action: {
                             print("버튼눌림")

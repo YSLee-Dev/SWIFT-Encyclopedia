@@ -37,6 +37,10 @@ let dependencies = Dependencies(
         .remote(
             url: "https://github.com/RxSwiftCommunity/RxOptional",
             requirement: .upToNextMajor(from: "5.0.0")
+        ),
+        .remote(
+            url: "https://github.com/onevcat/Kingfisher.git",
+            requirement: .upToNextMajor(from: "7.0.0")
         )
     ]),
     platforms: [

@@ -14,8 +14,8 @@ let project = Project.makeModule(
     dependencies: [
         .project(target: "Domain", path: .relativeToRoot("Projects/Domain")),
         .project(target: "Common", path: .relativeToRoot("Projects/Common")),
-        .external(name: "Swinject")
+        .external(name: "Swinject"),
+        .external(name: "Kingfisher")
     ],
     resources: ["Resources/**"]
 )
-

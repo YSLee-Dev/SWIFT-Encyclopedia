@@ -14,5 +14,5 @@ public class DetailViewModel: ObservableObject {
     public init() {
         
     }
-    @Published var tapEncyclopediaData: EncyclopediaData = .init(id: "", title: "", description: "", url: nil)
+    @Published var tapEncyclopediaData: EncyclopediaData = .init(id: "", title: "", description: "", url: nil, thumbnail: nil)
 }

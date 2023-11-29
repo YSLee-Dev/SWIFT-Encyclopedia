@@ -19,7 +19,8 @@ struct EncyclopediaDataDTO: Decodable {
                 id: $0.title + $0.description + $0.link + "\(self.start)",
                 title: $0.title,
                 description: $0.description,
-                url: URL(string: $0.link)
+                url: URL(string: $0.link), 
+                thumbnail: URL(string: $0.thumbnail)
             )
         }
     }
@@ -29,4 +30,5 @@ struct EncyclopediaItem: Decodable {
     let title: String
     let description: String
     let link: String
+    let thumbnail: String
 }

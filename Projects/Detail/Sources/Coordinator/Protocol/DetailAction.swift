@@ -10,4 +10,5 @@ import Foundation
 
 protocol DetailAction: AnyObject {
     func onDisappear()
+    func tapURL(url: URL)
 }

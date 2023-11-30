@@ -57,4 +57,8 @@ extension DetailCoordinator: DetailAction {
     func onDisappear() {
         self.delegate?.onDisappear(coordinator: self)
     }
+    
+    func tapURL(url: URL) {
+        UIApplication.shared.open(url)
+    }
 }

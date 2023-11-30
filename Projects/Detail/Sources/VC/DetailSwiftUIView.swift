@@ -58,7 +58,7 @@ public struct DetailSwiftUIView: View {
                     HStack(alignment: .top) {
                         Text("참고 URL:")
                         Button(action: {
-                            print("버튼눌림")
+                            self.delegate?.tapURL(url: self.viewModel.tapEncyclopediaData.url ?? URL(string: "https://naver.com")!)
                         }, label: {
                             Text(self.viewModel.tapEncyclopediaData.url?.absoluteString ?? "URL 정보 없음")
                                 .lineLimit(1)
